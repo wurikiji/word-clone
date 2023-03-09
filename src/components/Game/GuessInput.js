@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const GuessInput = ({ addNewGuess }) => {
+export const GuessInput = ({ addNewGuess, isPlaying = true, children }) => {
   const [guess, setGuess] = useState("");
   return (
     <form
@@ -20,7 +20,9 @@ export const GuessInput = ({ addNewGuess }) => {
         maxLength={5}
         pattern="[A-Z]{5}"
         onChange={(e) => setGuess(e.target.value.toUpperCase())}
+        disabled={!isPlaying}
       />
+      {children}
     </form>
   );
 };

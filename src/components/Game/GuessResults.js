@@ -1,7 +1,6 @@
 import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
-import { checkGuess } from "../../game-helpers";
 import { range } from "../../utils";
-export const GuessResults = ({ guesses, answer }) => {
+export const GuessResults = ({ guesses }) => {
   const maxGuesses = NUM_OF_GUESSES_ALLOWED;
   return (
     <div className="guess-results">
@@ -10,7 +9,7 @@ export const GuessResults = ({ guesses, answer }) => {
         return guess === undefined ? (
           <EmptyGuess key={`empty-guess-${guessIndex}`} />
         ) : (
-          <Guess key={guess.id} guess={checkGuess(guess.guess ?? "", answer)} />
+          <Guess key={guess.id} result={guess.result} />
         );
       })}
     </div>
@@ -27,13 +26,13 @@ const EmptyGuess = () => {
   );
 };
 
-const Guess = ({ guess }) => {
+const Guess = ({ result }) => {
   return (
     <p className="guess">
-      {guess?.map((result, index) => {
+      {result.map((r, index) => {
         return (
-          <span key={index} className={`cell ${result.status}`}>
-            {result.letter}
+          <span key={index} className={`cell ${r.status}`}>
+            {r.letter}
           </span>
         );
       })}
