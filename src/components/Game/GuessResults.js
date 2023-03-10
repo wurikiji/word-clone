@@ -1,5 +1,5 @@
-import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
-import { range } from "../../utils";
+import { NUM_OF_GUESSES_ALLOWED } from '../../constants';
+import { range } from '../../utils';
 export const GuessResults = ({ guesses }) => {
   const maxGuesses = NUM_OF_GUESSES_ALLOWED;
   return (

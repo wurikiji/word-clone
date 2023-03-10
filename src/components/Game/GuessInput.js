@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 export const GuessInput = ({ addNewGuess, isPlaying = true, children }) => {
-  const [guess, setGuess] = useState("");
+  const [guess, setGuess] = useState('');
   return (
     <form
       className="guess-input-wrapper"
@@ -9,7 +9,7 @@ export const GuessInput = ({ addNewGuess, isPlaying = true, children }) => {
         e.preventDefault();
         console.log({ guess });
         addNewGuess(guess);
-        setGuess("");
+        setGuess('');
       }}
     >
       <label htmlFor="guess-input">Enter guess:</label>
