@@ -1,11 +1,11 @@
-import React from "react";
-import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
+import React from 'react';
+import { NUM_OF_GUESSES_ALLOWED } from '../../constants';
 
-import { WORDS } from "../../data";
-import { checkGuess } from "../../game-helpers";
-import { sample } from "../../utils";
-import { GuessInput } from "./GuessInput";
-import { GuessResults } from "./GuessResults";
+import { WORDS } from '../../data';
+import { checkGuess } from '../../game-helpers';
+import { sample } from '../../utils';
+import { GuessInput } from './GuessInput';
+import { GuessResults } from './GuessResults';
 
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
@@ -14,17 +14,17 @@ console.info({ answer });
 
 function Game() {
   const [guesses, setGuesses] = React.useState([]);
-  const [gameStatus, setGameStatus] = React.useState("playing");
+  const [gameStatus, setGameStatus] = React.useState('playing');
 
   function addNewGuess(guess) {
     const newResult = checkGuess(guess, answer);
     const newGuesses = [...guesses, { result: newResult, id: Date.now() }];
     setGuesses(newGuesses);
     if (newGuesses.length === NUM_OF_GUESSES_ALLOWED) {
-      setGameStatus("lose");
+      setGameStatus('lose');
     }
-    if (newResult.every((r) => r.status === "correct")) {
-      setGameStatus("win");
+    if (newResult.every((r) => r.status === 'correct')) {
+      setGameStatus('win');
     }
   }
   return (
@@ -32,18 +32,18 @@ function Game() {
       <GuessResults guesses={guesses} />
       <GuessInput
         addNewGuess={addNewGuess}
-        isPlaying={gameStatus === "playing"}
+        isPlaying={gameStatus === 'playing'}
       >
-        {gameStatus === "win" && (
-          <div class="happy banner">
+        {gameStatus === 'win' && (
+          <div className="happy banner">
             <p>
-              <strong>Congratulations!</strong> Got it in{" "}
+              <strong>Congratulations!</strong> Got it in{' '}
               <strong>{guesses.length} guesses</strong>.
             </p>
           </div>
         )}
-        {gameStatus === "lose" && (
-          <div class="sad banner">
+        {gameStatus === 'lose' && (
+          <div className="sad banner">
             <p>
               Sorry, the correct answer is <strong>{answer}</strong>.
             </p>
